@@ -9,7 +9,6 @@ public class Student {
 	private int che;
 	private int phy;
 	private int bio;
-	private int total;
 	private String result;
 	public String getName() {
 		return name;
@@ -62,9 +61,7 @@ public class Student {
 	public int getTotal() {
 		return getMya()+getEng()+getMath()+getChe()+getPhy()+getBio();
 	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
+	
 	public String getResult() {
 		return result;
 	}
