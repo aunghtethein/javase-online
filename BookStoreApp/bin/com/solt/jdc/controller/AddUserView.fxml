@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.solt.jdc.controller.AddUserViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: darkblue;">
+         <children>
+            <SVGPath content="M7.5 14.375c0-2.954 1.873-5.478 4.493-6.449 0.318-0.714 0.507-1.507 0.507-2.301 0-3.107 0-5.625-3.75-5.625s-3.75 2.518-3.75 5.625c0 1.935 1.123 3.869 2.5 4.645v1.031c-4.24 0.347-7.5 2.43-7.5 4.949h7.76c-0.169-0.596-0.26-1.225-0.26-1.875z M14.375 8.75c-3.107 0-5.625 2.518-5.625 5.625s2.518 5.625 5.625 5.625c3.107 0 5.625-2.518 5.625-5.625s-2.518-5.625-5.625-5.625zM17.5 15h-2.5v2.5h-1.25v-2.5h-2.5v-1.25h2.5v-2.5h1.25v2.5h2.5v1.25z" fill="WHITE" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
+            <Label text="Add User" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <GridPane hgap="15.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.66668701171875" minWidth="10.0" prefWidth="120.66669464111328" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.6666793823242" minWidth="10.0" prefWidth="279.3333053588867" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Name*" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="15.0" text="Phone*" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="91.0" text="Login ID*" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="115.0" text="Password*" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#close" prefWidth="70.0" text="Close" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#add" prefWidth="70.0" text="Add" />
+               </children>
+            </HBox>
+            <TextField fx:id="nameTf" prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextField fx:id="phoneTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="emailTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="loginIdTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="addressTa" prefHeight="39.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <PasswordField fx:id="passwordTf" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>

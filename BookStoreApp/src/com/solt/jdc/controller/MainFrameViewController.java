@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class MainFrameViewController implements Initializable{
@@ -40,6 +42,52 @@ public class MainFrameViewController implements Initializable{
 
     @FXML
     private Label saleReportLabel;
+   
+    @FXML
+    private HBox bookId;
+
+    @FXML
+    private SVGPath bookIcon;
+
+    @FXML
+    private Label bookLabel;
+
+    @FXML
+    private HBox categoryId;
+
+    @FXML
+    private SVGPath categoryIcon;
+
+    @FXML
+    private Label categoryLabel;
+    
+    @FXML
+    private HBox authorId;
+
+    @FXML
+    private SVGPath authorIcon;
+
+    @FXML
+    private Label authorLabel;
+
+    @FXML
+    private HBox memberId;
+
+    @FXML
+    private SVGPath memberIcon;
+
+    @FXML
+    private Label memberLabel;
+
+    @FXML
+    private HBox exitId;
+
+    @FXML
+    private SVGPath exitIcon;
+
+    @FXML
+    private Label exitLabel;
+
 
     @FXML
     private Label title;
@@ -58,27 +106,38 @@ public class MainFrameViewController implements Initializable{
     
     @FXML
     void author(MouseEvent event) {
-
+    	colorDefault();
+    	fill(authorLabel, authorIcon, authorId, "#ace7ef", "black");
+    	loadView("Author Management", "AuthorView.fxml");
     }
     
     @FXML
     void book(MouseEvent event) {
-
+    	colorDefault();
+    	fill(bookLabel, bookIcon, bookId, "#ace7ef", "black");
+    	loadView("Book Management", "BookView.fxml");
+    	
     }
     
     @FXML
     void category(MouseEvent event) {
-
+    	colorDefault();
+    	fill(categoryLabel, categoryIcon, categoryId, "#ace7ef", "black");
+    	loadView("Category Management", "CategoryView.fxml");
     }
     
     @FXML
     void exit(MouseEvent event) {
-
+    	colorDefault();
+    	fill(exitLabel, exitIcon, exitId, "#ace7ef", "black");
+    	Platform.exit();
     }
     
     @FXML
      void member(MouseEvent event) {
-
+    	colorDefault();
+    	fill(memberLabel, memberIcon, memberId, "#ace7ef", "black");
+    	loadView("User Management", "UserView.fxml");
     }
 
     @FXML
@@ -90,13 +149,26 @@ public class MainFrameViewController implements Initializable{
     @FXML
     void saleReport(MouseEvent event) {
     	colorDefault();
-    	fill(saleReportLabel, saleItemIcon, saleReportId, "#ace7ef", "black");
+    	fill(saleReportLabel, saleReportIcon, saleReportId, "#ace7ef", "black");
 
     }
-    
+    public void loadView(String title, String view) {
+    	stackPane.getChildren().clear();
+    	this.title.setText("");
+    	try {
+			Parent viewFx = FXMLLoader.load(getClass().getResource(view));
+			stackPane.getChildren().addAll(viewFx);
+		} catch (IOException e) {
+			this.title.setText(title);
+			e.printStackTrace();
+		}
+    }
     public static void showView() throws IOException {
     	Parent root = FXMLLoader.load(MainFrameViewController.class.getResource("MainFrameView.fxml"));
     	Stage stage = new Stage();
+    	stage.setFullScreen(true);
+    	stage.setResizable(false);
+    	stage.initStyle(StageStyle.UNDECORATED);
     	stage.setScene(new Scene(root));
     	stage.show();
     }
@@ -133,6 +205,13 @@ public class MainFrameViewController implements Initializable{
 		String textColor = "White";
 		fill(saleItemLabel, saleItemIcon, saleItemId,hboxColor, textColor );
 		fill(saleReportLabel,saleReportIcon,saleReportId, hboxColor, textColor);
+		fill(bookLabel, bookIcon, bookId, hboxColor, textColor);
+		fill(categoryLabel, categoryIcon, categoryId, hboxColor, textColor);
+		fill(authorLabel, authorIcon, authorId, hboxColor, textColor);
+		fill(memberLabel, memberIcon, memberId, hboxColor, textColor);
+		fill(exitLabel, exitIcon, exitId, hboxColor, textColor);
+	
+	
 	}
 	
 }

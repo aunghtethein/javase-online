@@ -1,6 +1,6 @@
 package com.solt.jdc.entity;
 
-public class Author {
+public class Author implements Comparable<Author> {
 	private int id;
 	private String authorName;
 	
@@ -17,6 +17,15 @@ public class Author {
 		this.authorName = authorName;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return authorName;
+	}
+	@Override
+	public int compareTo(Author o) {
+		// TODO Auto-generated method stub
+		return authorName.compareTo(o.authorName);
+	}
 
 }

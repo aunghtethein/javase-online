@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.solt.jdc.controller.EditAuthorViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="75.0" spacing="5.0" style="-fx-background-color: #226089;">
+         <children>
+            <SVGPath content="M16.527 8.219l-1.625-1.625-7.058 7.059 1.628 1.628 7.054-7.062zM16.969 7.777l1.081-1.082c0.244-0.244 0.242-0.641-0.003-0.885l-0.737-0.735c-0.245-0.245-0.641-0.247-0.885-0.002l-1.080 1.080 1.625 1.625zM7.44 14.132l-0.4 1.945 1.959-0.386-1.56-1.56zM13.75 11.875v6.248c0 0.696-0.559 1.252-1.248 1.252h-9.378c-0.692 0-1.248-0.561-1.248-1.252v-13.121c0-0.696 0.559-1.252 1.248-1.252h0.627c0.002-0.693 0.561-1.25 1.252-1.25h0.623c0.001-1.039 0.842-1.875 1.881-1.875h0.613c1.037 0 1.88 0.839 1.881 1.875h0.623c0.692 0 1.25 0.559 1.252 1.25v0h0.627c0.692 0 1.248 0.561 1.248 1.252v1.873l2.238-2.238c0.495-0.495 1.282-0.493 1.769-0.006l0.737 0.737c0.485 0.485 0.484 1.279-0.006 1.769l-4.738 4.738zM13.125 7.5v-2.498c0-0.346-0.284-0.627-0.625-0.627h-0.625c-0.002 0.693-0.561 1.25-1.252 1.25h-5.622c-0.692 0-1.25-0.559-1.252-1.25h-0.625c-0.345 0-0.625 0.274-0.625 0.627v13.121c0 0.346 0.284 0.627 0.625 0.627h9.375c0.345 0 0.625-0.274 0.625-0.627v-5.623l-3.75 3.75-3.125 0.625 0.625-3.125 6.25-6.25zM6.25 3.125h-1.253c-0.344 0-0.622 0.277-0.622 0.624v0.626c0 0.345 0.278 0.624 0.622 0.624h5.631c0.344 0 0.622-0.277 0.622-0.624v-0.626c0-0.345-0.278-0.624-0.622-0.624h-1.253v-0.626c0-0.69-0.559-1.249-1.253-1.249h-0.619c-0.692 0-1.253 0.561-1.253 1.249v0.626zM7.813 3.125c0.173 0 0.313-0.14 0.313-0.313s-0.14-0.313-0.313-0.313c-0.173 0-0.313 0.14-0.313 0.313s0.14 0.313 0.313 0.313v0 0z" fill="WHITE" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
+            <Label text="Edit Author " textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <GridPane style="-fx-background-color: lightblue;" vgap="5.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="authorNameTf" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#close" prefWidth="125.0" style="-fx-background-color: #bf360c;" text="Close" textFill="WHITE" />
+                  <Button layoutX="10.0" layoutY="17.0" mnemonicParsing="false" onAction="#ok" prefWidth="125.0" style="-fx-background-color: #1b5e10;" text="OK" textFill="WHITE" />
+               </children>
+            </HBox>
+            <Label text="Author Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>

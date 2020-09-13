@@ -29,7 +29,7 @@ public class LoginViewController implements Initializable{
 
    
     public void close() {
-
+    	errorMessage.getScene().getWindow().hide();
     }
 
    
@@ -53,6 +53,7 @@ public class LoginViewController implements Initializable{
 			}
 			
 			MainFrameViewController.showView();
+			errorMessage.getScene().getWindow().hide();
 		} catch (BookStoreException e) {
 			errorMessage.setText(e.getMessage());
 		}

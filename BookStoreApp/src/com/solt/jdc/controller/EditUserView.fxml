@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.solt.jdc.controller.EditUserViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: darkblue;">
+         <children>
+            <SVGPath content="M16.527 8.219l-1.625-1.625-7.058 7.059 1.628 1.628 7.054-7.062zM16.969 7.777l1.081-1.082c0.244-0.244 0.242-0.641-0.003-0.885l-0.737-0.735c-0.245-0.245-0.641-0.247-0.885-0.002l-1.080 1.080 1.625 1.625zM7.44 14.132l-0.4 1.945 1.959-0.386-1.56-1.56zM13.75 11.875v6.248c0 0.696-0.559 1.252-1.248 1.252h-9.378c-0.692 0-1.248-0.561-1.248-1.252v-13.121c0-0.696 0.559-1.252 1.248-1.252h0.627c0.002-0.693 0.561-1.25 1.252-1.25h0.623c0.001-1.039 0.842-1.875 1.881-1.875h0.613c1.037 0 1.88 0.839 1.881 1.875h0.623c0.692 0 1.25 0.559 1.252 1.25v0h0.627c0.692 0 1.248 0.561 1.248 1.252v1.873l2.238-2.238c0.495-0.495 1.282-0.493 1.769-0.006l0.737 0.737c0.485 0.485 0.484 1.279-0.006 1.769l-4.738 4.738zM13.125 7.5v-2.498c0-0.346-0.284-0.627-0.625-0.627h-0.625c-0.002 0.693-0.561 1.25-1.252 1.25h-5.622c-0.692 0-1.25-0.559-1.252-1.25h-0.625c-0.345 0-0.625 0.274-0.625 0.627v13.121c0 0.346 0.284 0.627 0.625 0.627h9.375c0.345 0 0.625-0.274 0.625-0.627v-5.623l-3.75 3.75-3.125 0.625 0.625-3.125 6.25-6.25zM6.25 3.125h-1.253c-0.344 0-0.622 0.277-0.622 0.624v0.626c0 0.345 0.278 0.624 0.622 0.624h5.631c0.344 0 0.622-0.277 0.622-0.624v-0.626c0-0.345-0.278-0.624-0.622-0.624h-1.253v-0.626c0-0.69-0.559-1.249-1.253-1.249h-0.619c-0.692 0-1.253 0.561-1.253 1.249v0.626zM7.813 3.125c0.173 0 0.313-0.14 0.313-0.313s-0.14-0.313-0.313-0.313c-0.173 0-0.313 0.14-0.313 0.313s0.14 0.313 0.313 0.313v0 0z" fill="WHITE" scaleX="1.5" scaleY="1.5" scaleZ="1.5" />
+            <Label fx:id="title" text="Edit User" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <GridPane hgap="15.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.66668701171875" minWidth="10.0" prefWidth="120.66669464111328" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.6666793823242" minWidth="10.0" prefWidth="279.3333053588867" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Name*" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="15.0" text="Phone*" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="91.0" text="Login ID*" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="115.0" text="Password*" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="148.0" text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#close" prefWidth="70.0" text="Close" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#update" prefWidth="70.0" text="Update" />
+               </children>
+            </HBox>
+            <TextField fx:id="nameTf" prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextField fx:id="phoneTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="emailTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="loginIdTf" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="addressTa" prefHeight="39.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <PasswordField fx:id="passwordTf" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+         <padding>
+            <Insets right="15.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>
