@@ -115,6 +115,34 @@ public class BookService {
 		return null;
 	}
 
+	public int update(Book b) {
+		int rst = 0;
+		
+		String sql = "update book set name = ?,price = ?,issue_date = ?,stock = ?,image =?,category_id =?,author_id = ? where id = ?";
+		
+		try (Connection con = DatabaseManager.getConnection();
+				PreparedStatement stmt = con.prepareStatement(sql)){
+				stmt.setString(1, b.getName());
+				stmt.setDouble(2, b.getPrice());
+				if(b.getIssueDate() != null) {
+					stmt.setDate(3, Date.valueOf(b.getIssueDate()));
+				}else {
+					stmt.setDate(3, null);
+				}
+				
+				stmt.setInt(4, b.getStock());
+				stmt.setString(5, b.getImage());
+				stmt.setInt(6, b.getCategoryId());
+				stmt.setInt(7, b.getAuthorId());
+				stmt.setInt(8, b.getId());
+				
+				rst = stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rst;
+	}
+
 
 
 

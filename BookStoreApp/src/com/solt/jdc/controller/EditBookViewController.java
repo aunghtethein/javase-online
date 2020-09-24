@@ -5,12 +5,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.solt.jdc.entity.Author;
 import com.solt.jdc.entity.Book;
 import com.solt.jdc.entity.Category;
+import com.solt.jdc.service.AuthorService;
+import com.solt.jdc.service.BookService;
+import com.solt.jdc.service.CategoryService;
+import com.solt.jdc.util.BookStoreException;
+import com.solt.jdc.util.ImageManager;
 import com.solt.jdc.util.Reloader;
+import com.solt.jdc.util.ShowAlert;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -52,6 +61,9 @@ public class EditBookViewController implements Initializable {
     private Reloader reloader;
     private Book book;
    
+    private BookService srv;
+    private AuthorService autSrv;
+    private CategoryService catSrv;
     public void addImage() {
     	try {
 			FileChooser choose = new FileChooser();
@@ -75,7 +87,64 @@ public class EditBookViewController implements Initializable {
 
    
     public void ok() {
-
+    	try {
+			if(categoryCB.getValue() == null) {
+				throw new BookStoreException("Category is Empty!");
+			}
+			if(authorCB.getValue() == null) {
+				throw new BookStoreException("Author is Empty!");
+			}
+			if(issuseDateDP.getValue() == null) {
+				throw new BookStoreException("Issuse Date is not Selected!");
+			}
+			if(bookNameTf.getText().isEmpty() || bookNameTf.getText() == null) {
+				throw new BookStoreException("Book Name is Empty!");
+			}
+			if(priceTf.getText().isEmpty() || priceTf.getText() == null) {
+				throw new BookStoreException("Price is Empty!");
+			}
+			if(stockTf.getText().isEmpty() || stockTf.getText() == null) {
+				throw new BookStoreException("Stock is Empty!");
+			}
+			Double price = 0.0;
+			Double stock = 0.0;
+			try {
+				price = Double.valueOf(priceTf.getText());
+				} catch (Exception e) {
+				throw new BookStoreException("Please Enter Number only in Price");
+			}
+			
+			try {
+				stock = Double.valueOf(stockTf.getText());	
+			} catch (Exception e) {
+				throw new BookStoreException("Please Enter Number only in Stock");
+			}
+			String ImageName = bookNameTf.getText().concat(".png");
+			
+			book.setName(bookNameTf.getText());
+			book.setPrice(price);
+			book.setStock(Integer.valueOf(stockTf.getText()));
+			book.setIssueDate(issuseDateDP.getValue());
+			book.setImage(ImageName);
+			book.setAuthorId(authorCB.getValue().getId());
+			book.setCategoryId(categoryCB.getValue().getId());
+			
+			int rst = srv.update(book);
+					
+			if(rst != 0) {
+				ShowAlert.showAlert("Add Complete!", AlertType.CONFIRMATION);
+				File file = new File(ImageManager.createDirectory(), ImageName);
+				ImageManager.saveImage(imageView, file);
+				close();
+				reloader.reloader();
+				
+			}else {
+				ShowAlert.showAlert("Add UnComplete!", AlertType.ERROR);
+			}
+			
+		} catch (BookStoreException e) {
+			ShowAlert.showAlert(e.getMessage(), AlertType.WARNING);
+		}
     }
     
     public static void showView(Reloader reloader, Book book) {
@@ -84,6 +153,8 @@ public class EditBookViewController implements Initializable {
 			Parent root = loader.load();
 			EditBookViewController controller = loader.getController();
 			controller.reloader = reloader;
+			controller.book = book;
+			controller.showInfo(book);
 			Scene scene = new Scene(root);
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -97,9 +168,14 @@ public class EditBookViewController implements Initializable {
     }
     
     public void showInfo(Book book) {
-    	//authorCB.setValue(book.getAuthorName());
+    	authorCB.setValue(autSrv.findById(book.getAuthorId()));
+    	categoryCB.setValue(catSrv.findByid(book.getCategoryId()));
+    	issuseDateDP.setValue(book.getIssueDate());
+    	stockTf.setText(String.valueOf(book.getStock()));
     	bookNameTf.setText(book.getName());
     	priceTf.setText(String.valueOf(book.getPrice()));
+    	Image img = ImageManager.getImage(book.getImage());
+    	imageView.setImage(img);
     	
     }
 
@@ -107,6 +183,21 @@ public class EditBookViewController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		reloader = new BookViewController();
 		Book book = new Book();
+		srv = new BookService();
+		autSrv = new AuthorService();
+		catSrv = new CategoryService();
+		
+		List<Author> autList = autSrv.findAll();
+		List<Category> catList = catSrv.findAll();
+		Collections.sort(autList);
+		Collections.sort(catList);
+		
+		categoryCB.getItems().addAll(catSrv.findAll());
+		authorCB.getItems().addAll(autSrv.findAll());
+		
+		categoryCB.setVisibleRowCount(4);
+		authorCB.setVisibleRowCount(4);
+		
 	}
 
 }

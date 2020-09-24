@@ -11,6 +11,8 @@ import com.solt.jdc.util.Reloader;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -101,6 +103,15 @@ public class BookViewController implements Initializable, Reloader{
 		schAuthor.textProperty().addListener((a,b,c) -> search());
 		schName.textProperty().addListener((a,b,c) -> search());
 		
+		MenuItem edit = new MenuItem("Edit");
+		edit.setOnAction( e -> {
+			Book book = tableView.getSelectionModel().getSelectedItem();
+			if(book != null) {
+				EditBookViewController.showView(this, book);
+			}
+		});
+		
+		tableView.setContextMenu(new ContextMenu(edit));
 		reload();
 	}
 
