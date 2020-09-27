@@ -44,11 +44,15 @@ public class BookService {
 		
 				ResultSet rs = stmt.executeQuery();
 				while(rs.next()) {
+					LocalDate ld = null;
+					if(rs.getDate("issue_date") != null ) {
+						ld = rs.getDate("issue_date").toLocalDate();
+					}
 					Book book = new Book();
 					book.setId(rs.getInt("id"));
 					book.setName(rs.getString("name"));
 					book.setPrice(rs.getDouble("price"));
-					book.setIssueDate(rs.getDate("issue_date").toLocalDate());
+					book.setIssueDate(ld);
 					book.setStock(rs.getInt("stock"));
 					book.setImage(rs.getString("image"));
 					book.setCategoryId(rs.getInt("Category_id"));
@@ -72,7 +76,7 @@ public class BookService {
 		StringBuffer sb = new StringBuffer("select b.id, b.name, b.price, b.issue_date, b.stock, "
 		  		+ "b.image, b.Category_id, b.Author_id, a.AuthorName, c.CategoryName "
 		  		+ "from book b inner join author a on b.Author_id = a.id "
-		  		+ "inner join category c on b.Category_id = c.id where b.id > 0");
+		  		+ "inner join category c on b.Category_id = c.id where 1=1");
 		if(searchN != null && !searchN.isEmpty()) {
 			sb.append(" and b.name like ?");
 			param.add(searchN.concat("%"));
@@ -144,7 +148,82 @@ public class BookService {
 	}
 
 
+    public Book findById(int book_id) {
+		String sql = "select * from book where id = ?";
+		try (Connection con = DatabaseManager.getConnection();
+			 PreparedStatement stmt = con.prepareStatement(sql)){
 
+			stmt.setInt(1, book_id);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				LocalDate ld = null;
+				if(rs.getDate("issue_date") != null ) {
+					ld = rs.getDate("issue_date").toLocalDate();
+				}
+				Book book = new Book();
+				book.setId(rs.getInt("id"));
+				book.setName(rs.getString("name"));
+				book.setPrice(rs.getDouble("price"));
+				book.setIssueDate(ld);
+				book.setStock(rs.getInt("stock"));
+				book.setImage(rs.getString("image"));
+				book.setCategoryId(rs.getInt("Category_id"));
+				book.setAuthorId(rs.getInt("Author_id"));
+				return book;
+			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return  null;
+    }
+	public List<Book> find(int id, String searchName) {
+		List<Book > list  = new ArrayList<Book>();
+		List<Object> param = new ArrayList<Object>();
+		StringBuffer sb = new StringBuffer("select b.id, b.name, b.price, b.issue_date, b.stock, "
+				+ "b.image, b.Category_id, b.Author_id, a.AuthorName, c.CategoryName "
+				+ "from book b inner join author a on b.Author_id = a.id "
+				+ "inner join category c on b.Category_id = c.id where 1=1");
+		if(id != 0) {
+			sb.append(" and b.id =?");
+			param.add(id);
+		}
+		if(searchName != null && !searchName.isEmpty()) {
+			sb.append(" and b.name like ?");
+			param.add(searchName.concat("%"));
+		}
+
+		String sql = new String(sb);
+
+		try (Connection con = DatabaseManager.getConnection();
+			 PreparedStatement stmt = con.prepareStatement(sql)){
+			for(int i = 0; i<param.size(); i++) {
+				stmt.setObject(i+1, param.get(i));
+			}
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				LocalDate ld = null;
+				if(rs.getDate("issue_date") != null) {
+					ld = rs.getDate("issue_date").toLocalDate();
+				}
+				Book book = new Book();
+				book.setId(rs.getInt("id"));
+				book.setName(rs.getString("name"));
+				book.setPrice(rs.getDouble("price"));
+				book.setIssueDate(ld);
+				book.setStock(rs.getInt("stock"));
+				book.setImage(rs.getString("image"));
+				book.setCategoryId(rs.getInt("Category_id"));
+				book.setAuthorId(rs.getInt("Author_id"));
+				book.setCategoryName(rs.getString("CategoryName"));
+				book.setAuthorName(rs.getString("AuthorName"));
+				list.add(book);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

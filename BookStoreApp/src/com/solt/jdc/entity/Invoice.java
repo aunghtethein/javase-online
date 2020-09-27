@@ -1,13 +1,13 @@
 package com.solt.jdc.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Invoice {
 	private int id;
-	private int subTotal;
+	private double subTotal;
 	private double tax;
 	private double total;
-	private Date saleDate;
+	private LocalDate saleDate;
 	
 	private int user_id;
 
@@ -19,9 +19,6 @@ public class Invoice {
 		this.id = id;
 	}
 
-	public int getSubTotal() {
-		return subTotal;
-	}
 
 	public void setSubTotal(int subTotal) {
 		this.subTotal = subTotal;
@@ -43,11 +40,11 @@ public class Invoice {
 		this.total = total;
 	}
 
-	public Date getSaleDate() {
+	public LocalDate getSaleDate() {
 		return saleDate;
 	}
 
-	public void setSaleDate(Date saleDate) {
+	public void setSaleDate(LocalDate saleDate) {
 		this.saleDate = saleDate;
 	}
 
@@ -58,7 +55,12 @@ public class Invoice {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	
-	
 
+	public double getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
+	}
 }

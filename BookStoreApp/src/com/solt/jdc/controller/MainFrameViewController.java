@@ -142,8 +142,7 @@ public class MainFrameViewController implements Initializable{
 
     @FXML
     void saleItem(MouseEvent event) {
-    	colorDefault();
-    	fill(saleItemLabel, saleItemIcon, saleItemId,"#ace7ef", "black");
+    	loadSaleItem();
     }
 
     @FXML
@@ -163,10 +162,18 @@ public class MainFrameViewController implements Initializable{
 			e.printStackTrace();
 		}
     }
+    public void loadSaleItem() {
+        colorDefault();
+        fill(saleItemLabel, saleItemIcon, saleItemId,"#ace7ef", "black");
+        loadView("Sale Items", "SaleItemView.fxml");
+    }
     public static void showView() throws IOException {
-    	Parent root = FXMLLoader.load(MainFrameViewController.class.getResource("MainFrameView.fxml"));
+    	FXMLLoader loader = new FXMLLoader(MainFrameViewController.class.getResource("MainFrameView.fxml"));
+        Parent root = loader.load();
     	Stage stage = new Stage();
-    	stage.setFullScreen(true);
+        MainFrameViewController controller = loader.getController();
+        controller.loadSaleItem();
+        stage.setFullScreen(true);
     	stage.setResizable(false);
     	stage.initStyle(StageStyle.UNDECORATED);
     	stage.setScene(new Scene(root));

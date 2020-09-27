@@ -86,7 +86,8 @@ public class EditBookViewController implements Initializable {
     }
 
    
-    public void ok() {
+    @SuppressWarnings("unused")
+	public void ok() {
     	try {
 			if(categoryCB.getValue() == null) {
 				throw new BookStoreException("Category is Empty!");
@@ -179,6 +180,7 @@ public class EditBookViewController implements Initializable {
     	
     }
 
+	@SuppressWarnings("unused")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		reloader = new BookViewController();

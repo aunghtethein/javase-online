@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.solt.jdc.entity.User;
 import com.solt.jdc.service.UserService;
 import com.solt.jdc.util.BookStoreException;
+import com.solt.jdc.util.Security;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +52,7 @@ public class LoginViewController implements Initializable{
 			if(!user.getPassword().equals(password)) {
 				throw new BookStoreException("Password is Invalid");
 			}
-			
+			Security.setUser(user);
 			MainFrameViewController.showView();
 			errorMessage.getScene().getWindow().hide();
 		} catch (BookStoreException e) {

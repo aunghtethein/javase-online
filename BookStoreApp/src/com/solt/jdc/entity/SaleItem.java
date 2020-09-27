@@ -7,6 +7,14 @@ public class SaleItem {
 	private int book_id;
 	private int invoice_id;
 	
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}
@@ -36,6 +44,9 @@ public class SaleItem {
 	}
 	public void setInvoice_id(int invoice_id) {
 		this.invoice_id = invoice_id;
+	}
+	public double getTotal() {
+		return unitPrice*count;
 	}
 	
 	
