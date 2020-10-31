@@ -1,6 +1,7 @@
 package com.solt.jdc.entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Invoice {
 	private int id;
@@ -10,6 +11,16 @@ public class Invoice {
 	private LocalDate saleDate;
 	
 	private int user_id;
+	private String userName;
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public int getId() {
 		return id;
@@ -62,5 +73,12 @@ public class Invoice {
 
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
+	}
+	public String getSaleDateStr() {
+		String str = "";
+		if(saleDate != null) {
+			str = saleDate.format(DateTimeFormatter.ofPattern("dd//MM//yyyy"));
+		}
+		return str;
 	}
 }

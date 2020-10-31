@@ -149,7 +149,7 @@ public class MainFrameViewController implements Initializable{
     void saleReport(MouseEvent event) {
     	colorDefault();
     	fill(saleReportLabel, saleReportIcon, saleReportId, "#ace7ef", "black");
-
+    	loadView("Sale Report Management", "SaleReportView.fxml");
     }
     public void loadView(String title, String view) {
     	stackPane.getChildren().clear();

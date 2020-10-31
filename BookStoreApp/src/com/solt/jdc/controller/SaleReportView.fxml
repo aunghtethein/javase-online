@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="590.0" prefWidth="1000.0" spacing="20.0" style="-fx-background-color: #e1f5fe;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.solt.jdc.controller.SaleReportViewController">
+   <children>
+      <HBox spacing="20.0">
+         <children>
+            <DatePicker fx:id="dateFrom" promptText="Date From" />
+            <DatePicker fx:id="dateTo" promptText="Date To" />
+            <TextField fx:id="schEmployee" promptText="Search By Employee" />
+            <Button mnemonicParsing="false" onAction="#clear" prefWidth="65.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE" />
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="colInvoiceId" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right;" text="Invoice ID" />
+          <TableColumn fx:id="colSaleDate" prefWidth="75.0" style="-fx-alignment: center-right;" text="Sale Date" />
+            <TableColumn fx:id="colSubTotal" prefWidth="75.0" style="-fx-alignment: center-right;" text="Sub Total" />
+            <TableColumn fx:id="colTax" prefWidth="75.0" style="-fx-alignment: center-right;" text="Tax" />
+            <TableColumn fx:id="colTotal" prefWidth="75.0" style="-fx-alignment: center-right;" text="Total" />
+            <TableColumn fx:id="colUserName" prefWidth="75.0" style="-fx-alignment: center-right;" text="User Name" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox prefHeight="30.0" prefWidth="200.0">
+         <children>
+            <GridPane hgap="2.0" HBox.hgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="169.0" prefWidth="169.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="169.0" prefWidth="169.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="169.0" prefWidth="169.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefWidth="169.0" style="-fx-background-color: lightgrey;">
+                     <children>
+                        <Label fx:id="totSub" text="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefWidth="169.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="1">
+                     <children>
+                        <Label fx:id="totTax" text="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefWidth="169.0" style="-fx-background-color: lightgrey;" GridPane.columnIndex="2">
+                     <children>
+                        <Label fx:id="totTotal" text="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets left="272.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
